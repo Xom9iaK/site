@@ -1,0 +1,102 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #021d47;
+}
+
+.container {
+    width: 100%;
+}
+
+.register-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: rgb(193, 176, 136);
+    color: white;
+    border-radius: 15px;
+}
+
+.register-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form p {
+    margin: 0;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+form input {
+    width: 355px;
+    padding: 8px 20px;
+    background: rgb(255, 255, 255);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    color: #000000;
+    font-size: 14px;
+}
+
+.submit-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: white;
+    color: #022557;
+}
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+    justify-content: space-between;
+
+}
+
+.register-link a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #022557;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.home-button:hover {
+    color: #0047AB;
+}
+

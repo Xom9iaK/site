@@ -1,0 +1,176 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #021d47;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.vacancies-list {
+    display: grid;
+    gap: 30px;
+}
+
+.vacancy-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.vacancy-title {
+    color: #021d47;
+    margin: 0 0 20px 0;
+    font-size: 24px;
+}
+
+.vacancy-content {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: #021d47;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section h3 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.section p {
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.salary {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.salary h3 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.salary p {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+/* Add these new styles to your existing CSS */
+.vacancy-title {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.vacancy-title:hover {
+    background-color: #e5e5e5;
+}
+
+.toggle-icon {
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.vacancy-content {
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    color:#021d47;
+}
+.navbar {
+    background-color: #021d47;
+    padding: 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.application-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #021d47;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    background-color: #021d47;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #032561;
+}
+
+.apply-btn {
+    background-color: #021d47;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px 0;
+    font-weight: 800;
+    font-size: 16px;
+    display: block;
+}
+
+.apply-btn:hover {
+    background-color: #032561;
+}
+
+.application-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}

@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <script src="{% static 'fps/profile.js' %}"></script>
+    <link rel="stylesheet" href="../../static/fps/profile.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Главная</a>
+        <a href="{% url 'application' %}">Подать заявку</a>
+        <a href="{% url 'logout' %}">Выйти</a>
+    </nav>
+
+    <div class="profile-container">
+        <div class="profile-grid">
+            <!-- Левая колонка -->
+            <div class="profile-left">
+                <h2>Личные данные</h2>
+                <div class="profile-info">
+                    <div class="info-item">
+                        <label>Логин:</label>
+                        <span>{{ user.username }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Имя:</label>
+                        <span>{{ user.userprofile.first_name }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Фамилия:</label>
+                        <span>{{ user.userprofile.last_name }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Email:</label>
+                        <span>{{ user.userprofile.email }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Телефон:</label>
+                        <span>{{ user.userprofile.phone }}</span>
+                    </div>
+                    <button class="btn edit-btn" onclick="showEditForm()">Редактировать профиль</button>
+                </div>
+
+                <!-- Форма редактирования (изначально скрыта) -->
+                <div id="editForm" class="edit-form" style="display: none;">
+                    <h3>Редактирование профиля</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn save-btn">Сохранить</button>
+                        <button type="button" class="btn cancel-btn" onclick="hideEditForm()">Отмена</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Правая колонка -->
+            <div class="profile-right">
+                <div class="notifications">
+                    <div class="notifications-header">
+                        <h2>Уведомления</h2>
+                        <form method="post" action="{% url 'clear_notifications' %}" onsubmit="return confirm('Вы уверены, что хотите очистить все уведомления?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn clear-btn">Очистить уведомления</button>
+                        </form>
+                    </div>
+                    {% for notification in notifications %}
+                        <div class="notification">
+                            {{ notification.message }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="applications-history">
+                    <div class="applications-header">
+                        <h2>История заявок</h2>
+                        <form method="post" action="{% url 'clear_applications' %}" onsubmit="return confirm('Вы уверены, что хотите удалить всю историю заявок?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn clear-btn">Очистить историю</button>
+                        </form>
+                    </div>
+                    {% for application in applications %}
+                        <div class="application-card">
+                            <p>Услуга: {{ application.get_service_display }}</p>
+                            <p>Статус: {{ application.get_status_display }}</p>
+                            <p>Дата: {{ application.created_at|date:"d.m.Y" }}</p>
+                            
+                            {% if application.status == 'completed' %}
+                                {% if application.reviews.all %}
+                                    {% for review in application.reviews.all %}
+                                        <div class="review-container" id="review-{{ review.id }}">
+                                            <p class="review-text">{{ review.text }}</p>
+                                            <button class="btn edit-review-btn" onclick="showEditReview('{{ review.id }}')">
+                                                Редактировать отзыв
+                                            </button>
+                                            <div class="edit-review-form" id="edit-review-{{ review.id }}" style="display: none;">
+                                                <form method="post" action="{% url 'edit_review' review.id %}">
+                                                    {% csrf_token %}
+                                                    <textarea name="text" rows="3">{{ review.text }}</textarea>
+                                                    <button type="submit" class="btn save-btn">Сохранить</button>
+                                                    <button type="button" class="btn cancel-btn" onclick="hideEditReview('{{ review.id }}')">
+                                                        Отмена
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <button class="btn review-btn" onclick="showReviewForm('{{ application.id }}')">
+                                        Оставить отзыв
+                                    </button>
+                                    <div class="review-form" id="review-form-{{ application.id }}" style="display: none;">
+                                        <form method="post" action="{% url 'add_review' application.id %}">
+                                            {% csrf_token %}
+                                            <textarea name="text" rows="3" placeholder="Напишите ваш отзыв"></textarea>
+                                            <button type="submit" class="btn save-btn">Сохранить</button>
+                                            <button type="button" class="btn cancel-btn" onclick="hideReviewForm('{{ application.id }}')">
+                                                Отмена
+                                            </button>
+                                        </form>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вход</title>
+    <link rel="stylesheet" href="../../static/fps/stlog.css">
+</head>
+<body>
+    <div class="container">
+        <div class="register-container">
+            <h2>Вход</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="submit-btn">Войти</button>
+            </form>
+            <div class="register-link">
+                <a href="{% url 'register' %}" class="register-button">Зарегистрироваться</a>
+                <a href="{% url 'home' %}" class="home-button">На главную</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

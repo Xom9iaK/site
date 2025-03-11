@@ -1,0 +1,91 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #021d47;
+}
+
+.container {
+    width: 100%;
+}
+
+.register-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: rgb(193, 176, 136);
+    color: white;
+    border-radius: 15px;
+}
+
+.register-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form p {
+    margin: 0;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+form input {
+    width: 355px;
+    padding: 8px 20px;
+    background: rgb(255, 255, 255);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    color: #000000;
+    font-size: 14px;
+}
+
+.submit-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: white;
+    color: #022557;
+}
+.home-btn {
+    display: block;
+    width: fit-content;
+    margin: 15px auto 0;
+    padding: 10px 20px;
+    background: transparent;
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.home-btn:hover {
+    color: #022557;
+}

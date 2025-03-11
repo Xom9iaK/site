@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fridge Pro - Оформление заявки</title>
+    <link rel="stylesheet" href="../../static/fps/stapp.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="application-container">
+            {% if user.is_authenticated %}
+                <h2>Оформление заявки</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="submit-btn">Отправить заявку</button>
+                </form>
+                    <div class="navigation-buttons">
+                        <a href="{% url 'home' %}" class="home-button">На главную</a>
+                        <div class="logout-link">
+                            <a href="{% url 'logout' %}">Выйти</a>
+                        </div>
+                    </div>
+            {% else %}
+                <div class="auth-options">
+                    <h2>Для оформления заявки необходимо авторизоваться</h2>
+                    <div class="auth-buttons">
+                        <a href="{% url 'login' %}" class="btn">Войти</a>
+                        <span class="or-text">или</span>
+                        <a href="{% url 'register' %}" class="btn">Зарегистрироваться</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

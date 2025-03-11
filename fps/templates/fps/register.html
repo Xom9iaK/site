@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="../../static/fps/streg.css">
+</head>
+<body>
+    <div class="container">
+        <div class="register-container">
+            <h2>Регистрация</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="submit-btn">Зарегистрироваться</button>
+            </form>
+            <a href="/" class="home-btn">На главную</a>
+        </div>
+    </div>
+</body>
+</html>

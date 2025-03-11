@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вакансии</title>
+    <link rel="stylesheet" href="../../static/fps/vacancies.css">
+    <script src="{% static 'fps/vac.js' %}"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Главная</a>
+    </nav>
+    <div class="container">
+        <h1>Вакансии</h1>
+        <div class="vacancies-list">
+            {% for vacancy in vacancies %}
+                <div class="vacancy-card">
+                    <h2 class="vacancy-title" onclick="toggleVacancy('vacancy-content-{{ vacancy.id }}')">
+                        {{ vacancy.title }}
+                        <span class="toggle-icon">▼</span>
+                    </h2>
+                    <div class="vacancy-content" id="vacancy-content-{{ vacancy.id }}">
+                        <div class="section">
+                            <h3>Обязанности:</h3>
+                            <p>{{ vacancy.description }}</p>
+                        </div>
+                        <div class="section">
+                            <h3>Требования:</h3>
+                            <p>{{ vacancy.requirements }}</p>
+                        </div>
+                        <div class="section">
+                            <h3>Условия:</h3>
+                            <p>{{ vacancy.conditions }}</p>
+                        </div>
+                        <div class="salary">
+                            <h3>Зарплата:</h3>
+                            <p>{{ vacancy.salary }}</p>
+                        </div>
+                        
+                        <!-- Added Apply Button -->
+                        <button class="apply-btn" onclick="toggleApplicationForm('application-form-{{ vacancy.id }}')">
+                            Откликнуться
+                        </button>
+
+                        <div class="application-form" id="application-form-{{ vacancy.id }}" style="display: none;">
+                            <h3>Откликнуться на вакансию</h3>
+                            <form method="post" enctype="multipart/form-data" action="{% url 'submit_job_application' vacancy.id %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="id_name">Имя:</label>
+                                    {{ form.name }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_phone">Телефон:</label>
+                                    {{ form.phone }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_email">Email:</label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_resume">Резюме:</label>
+                                    {{ form.resume }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_cover_letter">Сопроводительное письмо:</label>
+                                    {{ form.cover_letter }}
+                                </div>
+                                <button type="submit" class="submit-btn">Отправить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
